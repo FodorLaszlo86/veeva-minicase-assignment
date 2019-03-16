@@ -11,13 +11,19 @@ class Report extends Component {
       salesPersons: salesData.Salesperson,
       products: salesData.Products,
       orders: salesData.Orders,
-      salesStatsForSalesman: []
+      salesPersonStats: [],
+      topSalesPersonByRevenue: [],
+      topSalesPersonBySoldItem: []
     }
   }
 
 
   componentDidMount = () => {
-    console.log(this.calcTotalSoldItemPerSalesperson());
+    this.setState({
+      salesPersonStats:this.getSalespersonStats(),
+      topSalesPersonByRevenue: this.getTopSalesPersonsByRevenue().slice(0, 3),
+      topSalesPersonBySoldItem: this.getTopSalesPersonsBySoldItems().slice(0, 3)
+    });
   }
   /*
   generating Stats for SalesPersons
@@ -32,7 +38,7 @@ class Report extends Component {
   
   */
 
-  calcTotalSoldItemPerSalesperson = () => {
+  getSalespersonStats = () => {
     const { products, salesPersons, orders } = this.state;
     
     const salesPersonStats = salesPersons.map(person => {
@@ -44,7 +50,7 @@ class Report extends Component {
                                          product[0] = products.find(id => id['Product Id'] === product[0])['Unit price'];
                                          return +product[0] * +product[1]
                                         })
-                                        .reduce((acc, b) => acc + b, 0)
+                                       .reduce((acc, b) => acc + b, 0)
                                     
       return {
         salesPerson_Id: person.Id, 
@@ -57,24 +63,23 @@ class Report extends Component {
   }
 
   getNumberUnitsSoldPerMonth = () => {
-    
-  }
-
-  calcTotalRevenuePerSalesPerson = () => {
 
   }
 
   getTopSalesPersonsByRevenue = () => {
-
+    const topSalesPersonByRevenue = this.getSalespersonStats();
+    topSalesPersonByRevenue.sort((a, b) => b.salesPerson_total_revenue - a.salesPerson_total_revenue);
+    return topSalesPersonByRevenue;
   }
 
   getTopSalesPersonsBySoldItems = () => {
-
+    const topSalesPersonBySoldItem = this.getSalespersonStats();
+    topSalesPersonBySoldItem.sort((a, b) => b.salesPerson_total_sold_item - a.salesPerson_total_sold_item);
+    return topSalesPersonBySoldItem;
   }
 
 
   render() {
-    console.log(this.state);
     return (
       <div className="App">
       </div>
