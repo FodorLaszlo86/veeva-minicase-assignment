@@ -13,7 +13,11 @@ class Report extends Component {
       orders: salesData.Orders,
       salesPersonStats: [],
       topSalesPersonByRevenue: [],
-      topSalesPersonBySoldItem: []
+      topSalesPersonBySoldItem: [],
+      unitsSoldByMonth: {
+        '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0,
+        '9': 0, '10': 0, '11': 0, '12': 0,
+      }
     }
   }
 
@@ -22,8 +26,10 @@ class Report extends Component {
     this.setState({
       salesPersonStats:this.getSalespersonStats(),
       topSalesPersonByRevenue: this.getTopSalesPersonsByRevenue().slice(0, 3),
-      topSalesPersonBySoldItem: this.getTopSalesPersonsBySoldItems().slice(0, 3)
+      topSalesPersonBySoldItem: this.getTopSalesPersonsBySoldItems().slice(0, 3),
+      unitsSoldByMonth: this.getNumberUnitsSoldPerMonth()
     });
+    console.log(this.getNumberUnitsSoldPerMonth())
   }
   /*
   generating Stats for SalesPersons
@@ -63,7 +69,13 @@ class Report extends Component {
   }
 
   getNumberUnitsSoldPerMonth = () => {
-
+    const unitsByMonth = {...this.state.unitsSoldByMonth}
+    this.state.orders.map(order => {
+      const monthNumeric = new Date(order['Order date']).getMonth() + 1; 
+      const amountOfUnits = +order['Number of product sold'];
+      unitsByMonth[monthNumeric] += amountOfUnits
+    });
+    return unitsByMonth;
   }
 
   getTopSalesPersonsByRevenue = () => {
@@ -80,6 +92,7 @@ class Report extends Component {
 
 
   render() {
+
     return (
       <div className="App">
       </div>
