@@ -4,6 +4,8 @@ import CompanyLogo from '../../components/CompanyLogo/CompanyLogo';
 import Title from '../../components/Title/Title';
 import TopSalesPersons from '../../components/TopSalesPersons/TopSalesPersons';
 import MonthlySellings from '../../components/MonthlySellings/MonthlySellings';
+import Customers from '../../components/Customers/Customers';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 class Report extends Component {
   constructor(props) {
@@ -20,7 +22,8 @@ class Report extends Component {
         '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0,
         '9': 0, '10': 0, '11': 0, '12': 0,
       },
-      customersStats: []
+      customerStats: [],
+      searchFor: ''
     }
   }
 
@@ -30,12 +33,10 @@ class Report extends Component {
       salesPersonStats:this.getSalespersonStats(),
       topSalesPersonByRevenue: this.getTopSalesPersonsByRevenue().slice(0, 3),
       topSalesPersonBySoldItem: this.getTopSalesPersonsBySoldItems().slice(0, 3),
-      unitsSoldByMonth: this.getNumberUnitsSoldPerMonth()
+      unitsSoldByMonth: this.getNumberUnitsSoldPerMonth(),
+      customerStats: this.getCustomerStats()
     });
-    console.log(this.getCustomerStats());
   }
-
-
 
   getSalespersonStats = () => {
     const { products, salesPersons, orders } = this.state;
@@ -102,8 +103,17 @@ class Report extends Component {
         customers[customerIdx]['Number of product sold'] += Number(order['Number of product sold']);
       }
     })
-    return customers;
-      
+    return customers; 
+  }
+
+  getSearchInput = (e) => {
+    this.setState({
+      searchFor: e.target.value
+    })
+  }
+
+  searchCustomer = () => {
+
   }
 
 
@@ -124,8 +134,8 @@ class Report extends Component {
         <MonthlySellings 
             sellingByMonth={ this.state.unitsSoldByMonth } 
         /> 
-      {/*
-      <Customers*/}
+        <SearchBar searchCustomer={ this.getSearchInput } />
+        <Customers customerStats={ this.state.customerStats } />
       </div>
     );
   }
