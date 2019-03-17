@@ -4,8 +4,7 @@ import CompanyLogo from '../../components/CompanyLogo/CompanyLogo';
 import Title from '../../components/Title/Title';
 import TopSalesPersons from '../../components/TopSalesPersons/TopSalesPersons';
 import MonthlySellings from '../../components/MonthlySellings/MonthlySellings';
-import Customers from '../../components/Customers/Customers';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import CustomerList from '../CustomerList/CustomerList';
 
 
 const getSalespersonStats = (products, salesPersons, orders) => {
@@ -57,24 +56,6 @@ const getNumberUnitsSoldPerMonth = () => {
   return unitsByMonth;
 }
 
-const getCustomerStats = (orders) => {
-  const customers = [];
-  orders.forEach(order => {
-    const data = {
-          'Account': order['Account'],
-          'Number of product sold': Number(order['Number of product sold'])
-    }
-    if(!customers.find(name => name['Account'] === order['Account'])) {
-      customers.push(data)
-    } else {
-      const customerIdx = customers.findIndex(name => name['Account'] === order['Account']);
-      customers[customerIdx]['Number of product sold'] += Number(order['Number of product sold']);
-    }
-  })
-  return customers; 
-}
-
-
 class Report extends Component {
   constructor(props) {
     super(props);
@@ -87,8 +68,6 @@ class Report extends Component {
       topSalesPersonByRevenue: getTopSalesPersonsByRevenue(),
       topSalesPersonBySoldItem: getTopSalesPersonsBySoldItems(),
       unitsSoldByMonth: unitsSoldByMonthRaw,
-      customerStats: getCustomerStats(salesData.Orders),
-      searchFor: ''
     }
   }
 
@@ -97,18 +76,6 @@ class Report extends Component {
         unitsSoldByMonth: getNumberUnitsSoldPerMonth()
       })
   }
-
-
-  getSearchInput = (e) => {
-    this.setState({
-      searchFor: e.target.value
-    })
-  }
-
-  searchCustomer = () => {
-
-  }
-
 
   render() {
 
@@ -127,8 +94,7 @@ class Report extends Component {
         <MonthlySellings 
             sellingByMonth={ this.state.unitsSoldByMonth } 
         /> 
-        <SearchBar searchCustomer={ this.getSearchInput.bind(this) } />
-        <Customers customerStats={ this.state.customerStats } />
+        <CustomerList />
       </div>
     );
   }
