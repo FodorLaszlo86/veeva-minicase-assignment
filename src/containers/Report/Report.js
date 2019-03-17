@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { salesData } from './Data/Data';
-
-import './App.css';
+import { salesData } from '../../Data/Data';
+import CompanyLogo from '../../components/CompanyLogo/CompanyLogo';
+import Title from '../../components/Title/Title';
+import TopSalesPersons from '../../components/TopSalesPersons/TopSalesPersons';
+import MonthlySellings from '../../components/MonthlySellings/MonthlySellings';
 
 class Report extends Component {
   constructor(props) {
@@ -17,7 +19,8 @@ class Report extends Component {
       unitsSoldByMonth: {
         '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0,
         '9': 0, '10': 0, '11': 0, '12': 0,
-      }
+      },
+      customersStats: []
     }
   }
 
@@ -29,20 +32,10 @@ class Report extends Component {
       topSalesPersonBySoldItem: this.getTopSalesPersonsBySoldItems().slice(0, 3),
       unitsSoldByMonth: this.getNumberUnitsSoldPerMonth()
     });
-    console.log(this.getNumberUnitsSoldPerMonth())
+    console.log(this.getCustomerStats());
   }
-  /*
-  generating Stats for SalesPersons
-  [
-    {
-      salesPerson: id,
-      name: 'Clarke Bockelman',
-      totalSoldItems: 2345,
-      totalrevenue: 9856
-    }
-  ]
-  
-  */
+
+
 
   getSalespersonStats = () => {
     const { products, salesPersons, orders } = this.state;
@@ -70,7 +63,7 @@ class Report extends Component {
 
   getNumberUnitsSoldPerMonth = () => {
     const unitsByMonth = {...this.state.unitsSoldByMonth}
-    this.state.orders.map(order => {
+    this.state.orders.forEach(order => {
       const monthNumeric = new Date(order['Order date']).getMonth() + 1; 
       const amountOfUnits = +order['Number of product sold'];
       unitsByMonth[monthNumeric] += amountOfUnits
@@ -90,11 +83,49 @@ class Report extends Component {
     return topSalesPersonBySoldItem;
   }
 
+  /*
+  Customer_Name | Purchased_units | total_amount
+  
+  */
+
+  getCustomerStats = () => {
+    const customers = [];
+    this.state.orders.forEach(order => {
+      const data = {
+            'Account': order['Account'],
+            'Number of product sold': Number(order['Number of product sold'])
+      }
+      if(!customers.find(name => name['Account'] === order['Account'])) {
+        customers.push(data)
+      } else {
+        const customerIdx = customers.findIndex(name => name['Account'] === order['Account']);
+        customers[customerIdx]['Number of product sold'] += Number(order['Number of product sold']);
+      }
+    })
+    return customers;
+      
+  }
+
 
   render() {
 
     return (
       <div className="App">
+        <CompanyLogo />
+        <Title />
+        <TopSalesPersons
+            criteria='Revenue' 
+            bestRevenueSalesPersons={ this.state.topSalesPersonByRevenue } 
+          />
+        <TopSalesPersons
+            criteria='Sold Units'
+            mostSellingSalesPersons={ this.state.topSalesPersonBySoldItem }
+          />
+        <MonthlySellings 
+            sellingByMonth={ this.state.unitsSoldByMonth } 
+        /> 
+      {/*
+      <Customers*/}
       </div>
     );
   }

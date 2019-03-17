@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Report from './Report';
+import Report from './containers/Report/Report';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Report />, document.getElementById('root'));
