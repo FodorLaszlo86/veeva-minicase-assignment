@@ -25,9 +25,14 @@ class CustomerList extends Component {
         super(props);
 
         this.state = {
-            customerStats: getCustomerStats(salesData.Orders),
-            searchFor: ''
+            searchFor: '',
         }
+    }
+
+    componentDidMount = () => {
+        this.setState({
+            customerStats: this.searchCustomer()
+        })
     }
 
     getSearchInput = (e) => {
@@ -37,14 +42,17 @@ class CustomerList extends Component {
       }
     
     searchCustomer = () => {
-    
+        return 
     }
 
     render() {
+        const filteredCustomers = getCustomerStats(salesData.Orders)
+                                    .filter(buyer => buyer['Account'].toLowerCase()
+                                    .includes(this.state.searchFor.toLowerCase()))
         return (
             <div>
                 <SearchBar searchCustomer={ this.getSearchInput } />
-                <Customers customerStats={ this.state.customerStats } />
+                <Customers customerStats={ filteredCustomers } />
             </div>
         )
     }

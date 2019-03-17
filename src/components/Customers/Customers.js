@@ -2,11 +2,19 @@ import React from 'react';
 import './Customers.scss';
 
 const customers = ({ customerStats }) => {
-    const tableRows = customerStats.map(customer => 
-        <tr key={ `customer-${customer['Account']}`}>
-            <td>{ customer['Account'] }</td>
-            <td>{ customer['Number of product sold'] }</td>
-        </tr>)
+    let tableRows;
+    if(customerStats.length > 0) {
+        tableRows = customerStats.map(customer => 
+            <tr key={ `customer-${customer['Account']}`}>
+                <td>{ customer['Account'] }</td>
+                <td>{ customer['Number of product sold'] }</td>
+            </tr>)
+    } else {
+        tableRows = <tr>
+            <td>No Users Found...</td>
+        </tr>
+    }
+    
     return (
         <table>
             <thead>
