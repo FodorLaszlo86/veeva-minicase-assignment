@@ -19,12 +19,12 @@
     @media screen and (max-width: 966px) {
      width: 90%;   
      margin-top: 4rem;
+     margin-left: 0;
     }
 
     @media screen and (max-width: 500px) {
      width: 100%;   
      margin-top: 0;
-     margin-left: 0;
     }
  }
 
@@ -40,7 +40,7 @@
     .fixed-table-head {
         display: flex;
         justify-content: space-between;
-        background-color: rgb(82, 82, 82);
+        background-color: #219fa3;
         padding: .5rem;
         color: #eeecec;
 
@@ -54,6 +54,7 @@
         overflow:auto;
         height:229px;
         width:100%;
+        background-color: #eeecec;
         
         tr {
             display: flex;
