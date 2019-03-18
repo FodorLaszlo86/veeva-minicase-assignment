@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { salesData } from '../../Data/Data';
-import CompanyLogo from '../../components/CompanyLogo/CompanyLogo';
-import Title from '../../components/Title/Title';
-import TopSalesPersons from '../../components/TopSalesPersons/TopSalesPersons';
+import Header from '../Header/Header';
+import SalesPersonTables from '../../containers/SalesPersonTables/SalesPersonTables';
 import MonthlySellings from '../../components/MonthlySellings/MonthlySellings';
 import CustomerList from '../CustomerList/CustomerList';
+
 
 
 const getSalespersonStats = (products, salesPersons, orders) => {
@@ -78,21 +78,18 @@ class Report extends Component {
   }
 
   render() {
-
+    const { topSalesPersonByRevenue, 
+            topSalesPersonBySoldItem, 
+            unitsSoldByMonth } = this.state;
     return (
       <div className="App">
-        <CompanyLogo />
-        <Title />
-        <TopSalesPersons
-            criteria='Revenue' 
-            bestRevenueSalesPersons={ this.state.topSalesPersonByRevenue } 
-          />
-        <TopSalesPersons
-            criteria='Sold Units'
-            mostSellingSalesPersons={ this.state.topSalesPersonBySoldItem }
-          />
+        <Header />
+        <SalesPersonTables 
+            topSalesPersonByRevenue={ topSalesPersonByRevenue }
+            topSalesPersonBySoldItem={ topSalesPersonBySoldItem }
+        />
         <MonthlySellings 
-            sellingByMonth={ this.state.unitsSoldByMonth } 
+            sellingByMonth={ unitsSoldByMonth } 
         /> 
         <CustomerList />
       </div>
