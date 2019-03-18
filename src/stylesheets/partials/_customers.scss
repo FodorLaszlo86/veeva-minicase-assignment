@@ -35,10 +35,6 @@
     height: 200px;
     border: 2px solid #bbbbbbd8;
 
-    @media screen and (max-width: 500px) {
-
-    }
-
     .fixed-table-head {
         display: flex;
         justify-content: space-between;
@@ -88,5 +84,4 @@
             margin: auto;
         }
     }
-    
 }

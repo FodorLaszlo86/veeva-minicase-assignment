@@ -11,7 +11,7 @@ const customers = ({ customerStats }) => {
     } else {
         tableRows = <tr>
             <td className='noUsers'>
-                <span>No Users Found...</span>
+                <span>No User Found...</span>
             </td>
         </tr>
     }

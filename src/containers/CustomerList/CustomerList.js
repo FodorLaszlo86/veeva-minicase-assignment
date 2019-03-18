@@ -29,20 +29,10 @@ class CustomerList extends Component {
         }
     }
 
-    componentDidMount = () => {
-        this.setState({
-            customerStats: this.searchCustomer()
-        })
-    }
-
     getSearchInput = (e) => {
         this.setState({
           searchFor: e.target.value
         })
-      }
-    
-    searchCustomer = () => {
-        return 
     }
 
     render() {
