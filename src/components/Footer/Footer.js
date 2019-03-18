@@ -3,11 +3,9 @@ import React from 'react';
 const footer = () => (
         <footer>
             <span>
-                Coded and Designed    
+                Coded and Designed 
             </span> 
-            <span>
-                by Laszlo Fodor
-            </span>
+            <span> by Laszlo Fodor</span>
         </footer>
 )
 
