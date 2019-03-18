@@ -1,0 +1,25 @@
+#header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 2rem 2.5rem;
+    background-color: #fff;
+    border-bottom: 2px solid rgba(141, 140, 140, 0.493);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+}
+
+#company-logo {
+
+}
+
+#title {
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #2b2b2b;
+    display: flex;
+    align-items: center;
+}
