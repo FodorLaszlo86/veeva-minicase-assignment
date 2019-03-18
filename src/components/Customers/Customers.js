@@ -1,5 +1,4 @@
 import React from 'react';
-import './Customers.scss';
 
 const customers = ({ customerStats }) => {
     let tableRows;
@@ -7,16 +6,18 @@ const customers = ({ customerStats }) => {
         tableRows = customerStats.map(customer => 
             <tr key={ `customer-${customer['Account']}`}>
                 <td>{ customer['Account'] }</td>
-                <td>{ customer['Number of product sold'] }</td>
+                <td className='value-field'>{ customer['Number of product sold'] }</td>
             </tr>)
     } else {
         tableRows = <tr>
-            <td>No Users Found...</td>
+            <td className='noUsers'>
+                <span>No Users Found...</span>
+            </td>
         </tr>
     }
     
     return (
-        <table>
+        <table className='customers-table'>
             <thead>
                 <tr className='fixed-table-head'>
                     <th>Customer Name</th>

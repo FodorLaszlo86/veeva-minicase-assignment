@@ -50,7 +50,7 @@ class CustomerList extends Component {
                                     .filter(buyer => buyer['Account'].toLowerCase()
                                     .includes(this.state.searchFor.toLowerCase()))
         return (
-            <div>
+            <div id='customer-list'>
                 <SearchBar searchCustomer={ this.getSearchInput } />
                 <Customers customerStats={ filteredCustomers } />
             </div>

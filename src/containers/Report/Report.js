@@ -88,10 +88,12 @@ class Report extends Component {
             topSalesPersonByRevenue={ topSalesPersonByRevenue }
             topSalesPersonBySoldItem={ topSalesPersonBySoldItem }
         />
-        <MonthlySellings 
-            sellingByMonth={ unitsSoldByMonth } 
-        /> 
-        <CustomerList />
+        <div className='field'>
+          <MonthlySellings 
+              sellingByMonth={ unitsSoldByMonth } 
+          /> 
+          <CustomerList />
+        </div>
       </div>
     );
   }

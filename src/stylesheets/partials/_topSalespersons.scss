@@ -9,7 +9,6 @@
 
     @media screen and (max-width: 500px) {
         width: 100%;
-        border: 2px solid red;
         margin: 15rem 0 3rem;
     }
 }
@@ -90,7 +89,7 @@
     &__head {
         tr {
             background-color: rgb(82, 82, 82);
-            color: #eeecec
+            color: #eeecec;
         }
 
         @media screen and (max-width: 650px) {

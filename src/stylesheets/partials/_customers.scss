@@ -1,0 +1,70 @@
+#searchbar {
+    width: 100%;
+    height: 4rem;
+    padding: .5rem .8rem;
+    font-size: 1.6rem;
+    
+    &::-webkit-input-placeholder {
+        text-transform: uppercase;
+    }
+}
+
+ #customer-list {
+    width: 40rem;
+ }
+
+.customers-table {
+    width: 100%;
+    height: 200px;
+    border: 2px solid #bbbbbbd8;
+
+    .fixed-table-head {
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(82, 82, 82);
+        padding: .5rem;
+        color: #eeecec;
+
+        tr {
+            border: 1px solid red;
+        }
+    }
+
+    .scroll-table {
+        display:block;
+        overflow:auto;
+        height:229px;
+        width:100%;
+        
+        tr {
+            display: flex;
+
+            .value-field {
+                border: 1px darkviolet;
+                text-align: right;
+            }
+
+            td {
+                justify-content: space-between;
+                padding: .5rem 1rem;
+                flex: 1;
+            }
+            &:nth-child(2n) {
+                background-color: #dbd8d8;
+            }
+        }
+    }
+
+    .noUsers {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        color: rgb(214, 15, 15);
+        text-transform: uppercase;
+
+        span {
+            margin: auto;
+        }
+    }
+    
+}
