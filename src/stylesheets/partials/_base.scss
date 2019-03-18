@@ -3,9 +3,21 @@
     padding: 0;
     box-sizing: border-box;
   }
+
+  html, body {
+    width: 100%;
+  }
   
   html {
     font-size: 62.5%;
+
+    @media screen and (max-width: 1166px) {
+      font-size: 56%
+    }
+
+    @media screen and (max-width: 500px) {
+      font-size: 52.5%;
+    }
   }
   
   body {
@@ -14,4 +26,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: inherit;
+  }
+
+  #root {
+    width: 100%;
   }

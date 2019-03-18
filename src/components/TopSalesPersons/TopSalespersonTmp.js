@@ -3,10 +3,10 @@ import React from 'react';
 const topSalespersonTmp = ({ salesPersonInfo, criteria }) => {
     const rowsData = salesPersonInfo.map(salesP => 
                      <tr className='sales-table__row' key={`salesperson-${salesP.salesPerson_Id}`}>
-                        <td>{ salesP.salesPerson_Id }</td>
-                        <td>{ salesP.salesPerson_name }</td>
-                        <td>{ salesP.salesPerson_total_sold_item }</td>
-                        <td>{ salesP.salesPerson_total_revenue }</td>
+                        <td datalabel='Id'>{ salesP.salesPerson_Id }</td>
+                        <td datalabel='Name'>{ salesP.salesPerson_name }</td>
+                        <td datalabel='Total Units Sold'>{ salesP.salesPerson_total_sold_item }</td>
+                        <td datalabel='Total Revenue'>{ salesP.salesPerson_total_revenue }</td>
                      </tr> )
     return (
         <table className='sales-table'>
