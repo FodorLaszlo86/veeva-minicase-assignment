@@ -12,15 +12,19 @@
 }
 
  #customer-list {
-    width: 40rem;
-
+    width: 65rem;
+    margin-left: 5rem;
+    margin-top: 5rem;
+    height: 100%;
     @media screen and (max-width: 966px) {
-     width: 56rem;   
+     width: 90%;   
      margin-top: 4rem;
     }
 
     @media screen and (max-width: 500px) {
      width: 100%;   
+     margin-top: 0;
+     margin-left: 0;
     }
  }
 
