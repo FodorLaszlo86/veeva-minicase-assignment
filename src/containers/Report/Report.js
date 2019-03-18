@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import SalesPersonTables from '../../containers/SalesPersonTables/SalesPersonTables';
 import MonthlySellings from '../../components/MonthlySellings/MonthlySellings';
 import CustomerList from '../CustomerList/CustomerList';
+import Footer from '../../components/Footer/Footer';
 
 
 
@@ -94,6 +95,7 @@ class Report extends Component {
           /> 
           <CustomerList />
         </div>
+        <Footer />
       </div>
     );
   }
